@@ -9,18 +9,15 @@ from datetime import datetime
 from io import TextIOWrapper, BytesIO
 import csv
 from sklearn.linear_model import LinearRegression
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
-# ✅ MySQL Configuration
-import os
-
-# ✅ Secure and flexible DB configuration for Render/db4free
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+# ✅ SQLite Configuration (works on Render)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(os.getcwd(), 'userdb.sqlite3')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
 
 # ✅ Load model
 try:
@@ -156,9 +153,10 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
+# ✅ Ensure tables are created
 with app.app_context():
     db.create_all()
 
+# ✅ For local and render deployment
 if __name__ == '__main__':
-    print("Starting Flask app...")
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=10000, debug=True)
