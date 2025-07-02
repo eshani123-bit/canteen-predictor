@@ -1,6 +1,7 @@
-# 🍽️ Canteen Food Quantity Predictor
+# 🍽️ Intelligent Food Prediction System for Canteens
 
-A smart web application that predicts the quantity of food required in a canteen based on the number of people, menu type, weekday, and event status. Built using **Flask**, **Machine Learning**, and **Chart.js**, it helps avoid food wastage and under-preparation.
+A smart web application that predicts the quantity of food required in a canteen,caterings based on the number of people, menu type, weekday, and event status. Built using **Flask**, **Machine Learning**, and **Chart.js**, it helps avoid food wastage and under-preparation.
+purpose=Predict-food-requirements-for-the-next-day-and-reduce-food-wastage
 
 ---
 
